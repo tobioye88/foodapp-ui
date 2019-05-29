@@ -1,0 +1,7 @@
+.horizontal-scrollable {
+    /* overflow: hidden; */
+    overflow-x: auto;
+}
+.horizontal-scrollable:hover {
+    overflow-x: auto;
+}
