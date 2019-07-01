@@ -1,6 +1,6 @@
 import React from 'react';
 import FoodItem from './FoodItem';
-import {Items as foodItems} from './Items';
+import {Items as foodItems} from './ItemsList';
 import HasCartButton from './HasCartButton';
 
 class Special extends HasCartButton {
