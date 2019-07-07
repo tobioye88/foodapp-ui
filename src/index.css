@@ -3,3 +3,9 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+.btn-rounded {
+    border-radius: 30px !important;
+    padding: 8px 16px;
+    text-transform: uppercase !important;
+    font-size: .75em;
+}

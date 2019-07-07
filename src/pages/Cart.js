@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CartItem from '../components/CartItem'
+import FoodItem from '../components/FoodItem';
 
 export default class Cart extends Component {
     constructor(props) {
@@ -20,8 +20,9 @@ export default class Cart extends Component {
     showEmptyScreen() {
         return (
             <div className="container mt-5" style={{ minHeight: "80vh" }}>
-                <div className="jumbotron text-center text-muted">
+                <div className="jumbotron text-center text-muted" style={{ borderRadius: '30px' }}>
                     <h2 className="display-4">Empty Cart</h2>
+                    <hr style={{ width: '30%' }} />
                     <p className="lead">Add an item to your cart</p>
                 </div>
             </div>
@@ -35,10 +36,15 @@ export default class Cart extends Component {
                 <div className="row">
                     <div className="col-md-8">
                         <div className="row">
-                            {this.props.cartItems.map(el => <CartItem key={el.item.id} item={el} parent={this.props.parent} />)}
+                            {this.props.cartItems.map(el => <FoodItem
+                                key={el.id}
+                                foodItem={el}
+                                parent={this.props.parent}
+                                className="col-md-4 mb-3"
+                                isCart={true} />)}
                         </div>
                     </div>
-                    <div className="col-md-4 bg-grey mb-5" style={{ backgroundColor: "#fff2f2" }}>
+                    <div className="col-md-4 bg-grey mb-5" style={{ backgroundColor: "#fff2f2", borderRadius: '30px' }}>
                         <form>
                             <h4 className="text-uppercase mt-3">Delivery Information</h4>
                             <div className="form-group">
@@ -54,7 +60,7 @@ export default class Cart extends Component {
 
                             <div className="form-group">
                                 <label htmlFor="promoCode">Promo Code</label>
-                                <input className="form-control" id="promoCode" name="promoCode" placeholder="Promo Code"/>
+                                <input className="form-control" id="promoCode" name="promoCode" placeholder="Promo Code" />
                             </div>
                             <div className="btn-group btn-group-toggle mb-3" data-toggle="buttons">
                                 <label className="btn btn-primary active">
@@ -83,7 +89,7 @@ export default class Cart extends Component {
                                     </tr>
                                     <tr>
                                         <th scope="row">Tax</th>
-                                        <td>10% 1000</td>
+                                        <td>{this.props.parent.state.subTotal * 0.1} <small className="text-muted">10% {this.props.parent.state.subTotal}</small></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Promo</th>
@@ -97,11 +103,11 @@ export default class Cart extends Component {
                             </table>
 
                             <div className="form-group">
-                                <button className="btn btn-primary btn-block" disabled={true}>Check Out</button>
+                                <button className="btn btn-primary btn-block btn-rounded" disabled={true}>Check Out</button>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>);
+            </div >);
     }
 }

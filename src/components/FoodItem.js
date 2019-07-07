@@ -1,34 +1,73 @@
 import React, { Component } from 'react';
 import { CONFIG } from './Config';
+import { withRouter } from 'react-router-dom';
 
 
 class FoodItem extends Component {
-  cardStyle = {
-    imageStyle: {
-      borderBottomRightRadius: '30px',
-      borderBottomLeftRadius: '30px',
+    cardStyle = {
+        imageStyle: {
+            borderRadius: '30px',
+            border: '4px solid white',
+        }
     }
-  }
 
-  render() {
-    const { name, price, image } = this.props.foodItem;
-    return (
-      <div className={this.props.className}>
-        <div className="card mb-3 shadow">
-          <img className="card-img" src={image} alt="Food" style={this.cardStyle.imageStyle} />
-          <div className="card-body d-flex">
-            <div style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
-              <p className="mb-0 small text-muted text-nowrap">{name}</p>
-              <p className="mb-0 ">{CONFIG.currencySymbol}{CONFIG.formatMoney(price)}</p>
+    increaseItemQuantity(item) {
+        this.props.parent.increaseItemQuantity(item)
+    }
+
+    decreaseItemQuantity(item) {
+        console.log("Cart: decrementing item: ", item.id);
+        this.props.parent.decreaseItemQuantity(item)
+    }
+
+    removeItem(item) {
+        this.props.parent.removeItem(item);
+    }
+
+    goToFoodDetails() {
+        console.log("changing path");
+        console.log(this.props.history);
+        this.props.history.push('/details/' + this.props.foodItem.id, {});
+    }
+
+    getFoodFooter() {
+        return (
+            <div className="card-footer text-right border-0 bg-transparent px-4 pb-4 pt-0">
+                <button className="btn btn-primary btn-sm btn-rounded" onClick={this.props.addToCart.bind(this, this.props.foodItem)}>+ Add To Cart</button>
+            </div>);
+    }
+
+    getCartFooter(item, quantity) {
+        return (
+            <div className="card-footer border-0 bg-white clearfix px-4 pb-4">
+                <div className="float-left">
+                    <button className="btn btn-outline-secondary btn-sm" onClick={this.decreaseItemQuantity.bind(this, item)}>-</button>
+                    <span className="p-2">{quantity}</span>
+                    <button className="btn btn-outline-secondary btn-sm" onClick={this.increaseItemQuantity.bind(this, item)}>+</button>
+                </div>
+                <div className="float-right">
+                    <button className="btn btn-danger btn-sm btn-rounded" onClick={this.removeItem.bind(this, item)}>Remove</button>
+                </div>
+            </div>);
+    }
+
+    render() {
+        const { name, price, image, quantity } = this.props.foodItem;
+        return (
+            <div className={this.props.className}>
+                <div className="card mb-3 shadow" style={{ borderRadius: '30px', overflow: 'hidden', border: 'none' }}>
+                    <img className="card-img" src={image} alt="Food" style={this.cardStyle.imageStyle} onClick={this.goToFoodDetails.bind(this, this.props.foodItem)} />
+                    <div className="card-body d-flex">
+                        <div style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
+                            <p className="mb-0 small text-muted text-nowrap">{name}</p>
+                            <p className="mb-0 ">{CONFIG.currencySymbol}{CONFIG.formatMoney(price)}</p>
+                        </div>
+                    </div>
+                    {(this.props.isCart) ? this.getCartFooter(this.props.foodItem, quantity) : this.getFoodFooter()}
+                </div>
             </div>
-          </div>
-          <div className="card-footer text-right border-0 bg-white">
-            <button className="btn btn-primary btn-sm" onClick={this.props.addToCart.bind(this, this.props.foodItem)}>+ Add To Cart</button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+        );
+    }
 }
 
-export default FoodItem;
+export default withRouter(FoodItem);
