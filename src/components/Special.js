@@ -2,8 +2,10 @@ import React from 'react';
 import FoodItem from './FoodItem';
 import { Items as foodItems } from './ItemsList';
 import HasCartButton from './HasCartButton';
+import { Heading } from './Utils';
 
 class Special extends HasCartButton {
+    style = { backgroundImage: 'linear-gradient(0deg, rgba(232, 232, 232, 1), transparent)' }
 
     constructor(props) {
         super(props);
@@ -12,10 +14,10 @@ class Special extends HasCartButton {
 
     render() {
         return (
-            <div className="mb-5" style={{ backgroundColor: '#e8e8e8' }}>
+            <div className="mb-5" style={this.style}>
                 <div className="container">
-                    <h3 className="py-3">Special</h3>
-                    <div className="row flex-row flex-nowrap horizontal-scrollable">
+                    <Heading text="Special" />
+                    <div className="row flex-row flex-nowrap horizontal-scrollable pb-5">
                         {this.foodItems.map((foodItem) => {
                             return <FoodItem
                                 key={foodItem.id}

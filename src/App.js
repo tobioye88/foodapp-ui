@@ -6,7 +6,8 @@ import Cart from './pages/Cart';
 import Details from './pages/Details';
 import Page404 from './pages/Page404';
 import Footer from './components/Footer';
-import Header from './components/Header';
+import Login from './pages/Login';
+import Dashboard from './pages/admin/Dashboard';
 
 class App extends Component {
     //cartItems[item: object},]
@@ -102,12 +103,14 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <Header />
                 <Switch>
                     <Route exact path="/" render={(props) => <Home addToCart={this.addToCart.bind(this)} parent={this} />} />
                     <Route path="/about" component={About} />
                     <Route path="/cart" render={(props) => <Cart addToCart={this.addToCart.bind(this)} cartItems={this.state.cartItems} parent={this} />} />
                     <Route path="/details/:slug" validate={parms => console.log(parms)} render={(props) => <Details props={props} />} />
+                    <Route path="/login" component={Login} />
+                    <Route path="/user" component={Login} />
+                    <Route path="/admin" component={Dashboard} />
                     <Route component={Page404} />
                 </Switch>
                 <Footer />

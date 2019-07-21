@@ -9,3 +9,14 @@ body {
     text-transform: uppercase !important;
     font-size: .75em;
 }
+.nav-round-right {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.nav-round-right:hover {
+    background-color: rgb(242, 242, 242);
+}
+.nav-round-right.active{
+    background-color: rgb(255, 55, 55);
+    color: #ffffff;
+}

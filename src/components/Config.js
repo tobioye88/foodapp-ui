@@ -39,5 +39,5 @@ export const CONFIG = {
         } catch (e) {
             console.log(e)
         }
-    }
+    },
 }

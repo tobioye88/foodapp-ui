@@ -1,21 +1,23 @@
 import React from 'react';
-import { Items as foodItems } from './ItemsList';
 import FoodItem from './FoodItem';
 import HasCartButton from './HasCartButton';
+import { Heading } from './Utils';
 
 class Available extends HasCartButton {
 
     constructor(props) {
         super(props);
-        this.foodItems = foodItems;
+        this.foodItems = props.foodItems;
     }
 
     render() {
+        const { foodItems } = this.props;
+        console.log(foodItems)
         return (
             <div className="container">
-                <h3 className="py-3">Available</h3>
+                <Heading text="Available" />
                 <div className="row">
-                    {this.foodItems.map((foodItem) => <FoodItem
+                    {foodItems.map((foodItem) => <FoodItem
                         key={foodItem.id}
                         foodItem={foodItem}
                         className="col-md-3 mb-5"

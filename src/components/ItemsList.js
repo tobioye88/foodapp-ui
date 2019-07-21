@@ -4,7 +4,7 @@ export const Items = [
         name: "Fried Rice and Chicken",
         price: 1200.00,
         description: "Delicious",
-        image: "/imgs/foodimage.jpg",
+        imagePath: "foodimage.jpg",
         quantity: 1,
     },
     {
@@ -12,7 +12,7 @@ export const Items = [
         name: "Gizdodo and Plantains",
         price: 1000.00,
         description: "Delicious",
-        image: "/imgs/foodimage.jpg",
+        imagePath: "foodimage.jpg",
         quantity: 1,
     },
     {
@@ -20,7 +20,7 @@ export const Items = [
         name: "Fried Yam and Eggs",
         price: 900.00,
         description: "Delicious",
-        image: "/imgs/foodimage.jpg",
+        imagePath: "foodimage.jpg",
         quantity: 1,
     },
     {
@@ -28,7 +28,7 @@ export const Items = [
         name: "Burger and Fries",
         price: 1500.00,
         description: "Delicious",
-        image: "/imgs/foodimage.jpg",
+        imagePath: "foodimage.jpg",
         quantity: 1,
     },
     {
@@ -36,7 +36,7 @@ export const Items = [
         name: "Perfait",
         price: 500.00,
         description: "Spetacular",
-        image: "/imgs/foodimage.jpg",
+        imagePath: "foodimage.jpg",
         quantity: 1,
     }
 ];

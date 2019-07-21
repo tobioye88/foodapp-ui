@@ -23,7 +23,7 @@ class NavBar extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-light">
+            <nav className="navbar navbar-expand-lg navbar-light shadow px-5" style={{ borderRadius: "50px", backgroundColor: CONFIG.primaryColor }} >
                 <Link className="navbar-brand" to="/" style={{ color: this.props.navLinkColor }}>FoodStack</Link>
                 <button className="navbar-toggler border-0" style={{ color: this.props.navLinkColor }} type="button" onClick={this.toggleNavButton} data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -35,7 +35,7 @@ class NavBar extends Component {
                         })}
                     </ul>
                 </div>
-            </nav>
+            </ nav>
         );
     }
 

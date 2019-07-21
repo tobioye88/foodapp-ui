@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FoodItem from '../components/FoodItem';
+import Header from '../components/Header';
 
 export default class Cart extends Component {
     constructor(props) {
@@ -14,12 +15,16 @@ export default class Cart extends Component {
 
     render() {
         const { checkedCard, checkedCash } = this.state;
-        return ((this.props.cartItems.length) ? this.showAllItems(checkedCard, checkedCash) : this.showEmptyScreen())
+        return (
+            <>
+                <Header />
+                {(this.props.cartItems.length) ? this.showAllItems(checkedCard, checkedCash) : this.showEmptyScreen()}
+            </>);
     }
 
     showEmptyScreen() {
         return (
-            <div className="container mt-5" style={{ minHeight: "80vh" }}>
+            <div className="container">
                 <div className="jumbotron text-center text-muted" style={{ borderRadius: '30px' }}>
                     <h2 className="display-4">Empty Cart</h2>
                     <hr style={{ width: '30%' }} />
@@ -31,7 +36,8 @@ export default class Cart extends Component {
 
     showAllItems(checkedCard, checkedCash) {
         return (
-            <div className="container" style={{ minHeight: "80vh" }}>
+
+            <div className="container">
                 <h3 className="pt-3">Cart</h3>
                 <div className="row">
                     <div className="col-md-8">
@@ -108,6 +114,7 @@ export default class Cart extends Component {
                         </form>
                     </div>
                 </div>
-            </div >);
+            </div >
+        );
     }
 }

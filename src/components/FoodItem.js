@@ -52,11 +52,11 @@ class FoodItem extends Component {
     }
 
     render() {
-        const { name, price, image, quantity } = this.props.foodItem;
+        const { name, price, imagePath, quantity } = this.props.foodItem;
         return (
             <div className={this.props.className}>
                 <div className="card mb-3 shadow" style={{ borderRadius: '30px', overflow: 'hidden', border: 'none' }}>
-                    <img className="card-img" src={image} alt="Food" style={this.cardStyle.imageStyle} onClick={this.goToFoodDetails.bind(this, this.props.foodItem)} />
+                    <img className="card-img" src={`${CONFIG.baseRoute}/v1/file/${imagePath}`} alt="Food" style={this.cardStyle.imageStyle} onClick={this.goToFoodDetails.bind(this, this.props.foodItem)} />
                     <div className="card-body d-flex">
                         <div style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
                             <p className="mb-0 small text-muted text-nowrap">{name}</p>
