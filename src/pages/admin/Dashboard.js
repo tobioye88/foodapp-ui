@@ -7,14 +7,13 @@ import FoodDetails from './FoodDetails';
 import FoodService from '../../services/FoodService';
 import FoodItemService from '../../services/FoodItemService';
 import { Modal, Utils } from '../../components/Utils';
-import { CONFIG } from '../../components/Config';
+import { CONFIG } from '../../config/Config';
 import FoodCategoryService from '../../services/FoodCategoryService';
 
 export default class Dashboard extends Component {
 
     constructor(props) {
         super(props);
-
 
         this.state = {
             foodRequest: {
@@ -263,7 +262,7 @@ export default class Dashboard extends Component {
                                                     onChange={this.onChangeFoodItemCheckBox.bind(this)}
                                                     type="checkbox"
                                                     name={item.name}
-                                                    value={item.id} /> <span>{item.name}</span> <small className="text-muted">{CONFIG.formatMoney(item.price)}</small></label>
+                                                    value={item.id} /> <span>{item.name}</span> <small className="text-muted">{Utils.formatMoney(item.price)}</small></label>
                                         </div>))}
                             </div>
                             <div className="col-6">

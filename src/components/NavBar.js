@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { CONFIG } from './Config';
+import { CONFIG } from '../config/Config';
 
 class NavBar extends Component {
+    bannerLogoColour = { color: CONFIG.primaryColor }
+    navLinkColor = { color: this.props.navLinkColor }
+    searchProps = {
+        inputStyle: {
+            borderRadius: 30,
+            backgroundColor: '#f3f3f3'
+        },
+        inputClassName: "no-class"
+    }
+
     constructor(props) {
         super(props);
 
-        this.CONFIG = CONFIG;
         this.state = {
             isNavBarOpen: false
         }
@@ -22,18 +31,14 @@ class NavBar extends Component {
     }
 
     render() {
+        // return (<div></div>);
         return (
-            <nav className="navbar navbar-expand-lg navbar-light shadow px-5" style={{ borderRadius: "50px", backgroundColor: CONFIG.primaryColor }} >
-                <Link className="navbar-brand" to="/" style={{ color: this.props.navLinkColor }}>FoodStack</Link>
-                <button className="navbar-toggler border-0" style={{ color: this.props.navLinkColor }} type="button" onClick={this.toggleNavButton} data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className={'collapse navbar-collapse ' + (this.state.isNavBarOpen ? 'show' : '')} id="navbarNav">
-                    <ul className="navbar-nav ml-auto">
-                        {this.CONFIG.navLinks.filter(link => link.showInHeader).map((link, i) => {
-                            return this.renderLink(i, link)
-                        })}
-                    </ul>
+            <nav className="navbar navbar-expand-lg navbar-light sticky-top my-3 bg-white">
+                <div className="px-5">
+                    <Link className="navbar-brand font-weight-bold" to="/" style={this.bannerLogoColour}>FoodStack</Link>
+                </div>
+                <div className="flex-grow-1">
+                    <input className="form-control border-0 bg-grey br-30" style={{ height: 50 }} />
                 </div>
             </ nav>
         );

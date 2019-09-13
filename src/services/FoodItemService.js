@@ -1,4 +1,4 @@
-import { CONFIG } from "../components/Config";
+import { CONFIG } from "../config/Config";
 
 class FoodItemService {
 

@@ -14,6 +14,29 @@ export function Button(props) {
     )
 }
 
+export function Input(props) {
+    const { inputClassName = '', inputStyle = {}, placeholder = '' } = props;
+    return (
+        <input className={inputClassName} style={inputStyle} placeholder={placeholder} />
+    )
+}
+
+export function FormInput(props) {
+    const { labelClassName = 'btn btn-primary', labelStyle = {}, labelText = '' } = props;
+    return (
+        <div>
+            <label className={labelClassName} style={labelStyle}>{labelText}</label>
+            <Input props={props} />
+        </div>
+    )
+}
+
+export function Icon(props) {
+    const { componentStyle = '', className } = props;
+
+    return (<i className={className} style={componentStyle}></i>)
+}
+
 export function DetailCard(props) {
     const { title, subtitle, body, className = "col-4", style = { borderRadius: 30 } } = props;
     return (
@@ -28,6 +51,20 @@ export function DetailCard(props) {
         </div>
     )
 }
+
+export default function Loading(props) {
+    const { className } = props;
+    return (
+        <div className="test-center">
+            <div className={"d-flex justify-content-center " + className}>
+                <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 
 export class Modal extends Component {
 
@@ -89,6 +126,22 @@ export class Utils {
             mSet.splice(index, 1);
         }
         return [...mSet];
+    }
+
+    static formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
+        try {
+            decimalCount = Math.abs(decimalCount);
+            decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
+
+            const negativeSign = amount < 0 ? "-" : "";
+
+            let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
+            let j = (i.length > 3) ? i.length % 3 : 0;
+
+            return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "");
+        } catch (e) {
+            console.log(e)
+        }
     }
 }
 

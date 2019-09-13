@@ -1,9 +1,17 @@
-import { CONFIG } from "../components/Config";
+import { CONFIG } from "../config/Config";
+import { FoodList } from "../config/MockData";
 
 class BaseService {
     static get path() { return "base" };
 
     static getAll(page, resolve = () => { }, reject = () => { }) {
+        if (CONFIG.isMock) {
+            setTimeout(() => {
+                resolve(FoodList);
+            }, CONFIG.mockLoadingTime);
+            return;
+        }
+
         fetch(`${CONFIG.baseRoute}/v1/${this.path}/all`)
             .then(response => {
                 if (response.status >= 300 || response.status < 200) {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { CONFIG } from './Config';
+import { CONFIG } from '../config/Config';
 import { withRouter } from 'react-router-dom';
+import { Utils } from './Utils';
 
 
 class FoodItem extends Component {
@@ -53,14 +54,15 @@ class FoodItem extends Component {
 
     render() {
         const { name, price, imagePath, quantity } = this.props.foodItem;
+        console.log(this.props.foodItem);
         return (
             <div className={this.props.className}>
-                <div className="card mb-3 shadow" style={{ borderRadius: '30px', overflow: 'hidden', border: 'none' }}>
-                    <img className="card-img" src={`${CONFIG.baseRoute}/v1/file/${imagePath}`} alt="Food" style={this.cardStyle.imageStyle} onClick={this.goToFoodDetails.bind(this, this.props.foodItem)} />
-                    <div className="card-body d-flex">
-                        <div style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
+                <div className="food-item card box-shadow">
+                    <img className="card-img" src={`${CONFIG.baseRouteImg}/v1/file/${imagePath}`} alt="Food" onClick={this.goToFoodDetails.bind(this, this.props.foodItem)} />
+                    <div className="card-body d-flex py-2 px-3">
+                        <div className="" style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
                             <p className="mb-0 small text-muted text-nowrap">{name}</p>
-                            <p className="mb-0 ">{CONFIG.currencySymbol}{CONFIG.formatMoney(price)}</p>
+                            <p className="mb-0 ">{CONFIG.currencySymbol}{Utils.formatMoney(price)}</p>
                         </div>
                     </div>
                     {(this.props.isCart) ? this.getCartFooter(this.props.foodItem, quantity) : this.getFoodFooter()}

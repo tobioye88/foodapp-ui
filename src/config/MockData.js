@@ -1,4 +1,4 @@
-export const Items = [
+export const FoodList = [
     {
         id: 1,
         name: "Fried Rice and Chicken",
@@ -38,5 +38,40 @@ export const Items = [
         description: "Spetacular",
         imagePath: "foodimage.jpg",
         quantity: 1,
+    },
+    {
+        id: 6,
+        name: "Perfait",
+        price: 500.00,
+        description: "Spetacular",
+        imagePath: "foodimage.jpg",
+        quantity: 1,
+    },
+    {
+        id: 7,
+        name: "Perfait",
+        price: 500.00,
+        description: "Spetacular",
+        imagePath: "foodimage.jpg",
+        quantity: 1,
+    },
+    {
+        id: 8,
+        name: "Perfait",
+        price: 500.00,
+        description: "Spetacular",
+        imagePath: "foodimage.jpg",
+        quantity: 1,
+    }
+];
+
+export const CategoryList = [
+    {
+        name: "All",
+        active: true
+    },
+    {
+        name: "Green",
+        active: false
     }
 ];

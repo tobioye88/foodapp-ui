@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  min-height: 100vh;
 }
 .btn-rounded {
     border-radius: 30px !important;
@@ -19,4 +20,66 @@ body {
 .nav-round-right.active{
     background-color: rgb(255, 55, 55);
     color: #ffffff;
+}
+
+.vh-100 {
+    height: 100vh;
+}
+
+.full-height {
+    min-height: 100vh;
+}
+
+.min-h-100 {
+    min-height: 100%;
+}
+
+.bg-grey {
+    background-color: #f3f3f3;
+}
+
+.br-30 {
+    border-radius: 20px;
+}
+.br-15 {
+    border-radius: 15px;
+}
+
+.food-item { 
+    border-radius: 15px;
+    overflow: hidden;
+    border: none
+}
+.food-item img {
+    border-radius: 15px 15px 0 0;
+}
+
+.food-cat-item {
+    font-size: 1.2em;
+}
+
+.cart-counter {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+
+.box-shadow {
+    box-shadow: 0 0 10px #b6b6b678;
+}
+
+.cat-link {
+    color: #979797;
+    cursor: pointer;
+    font-size: 1.3em;
+}
+.cat-link:hover{
+    color: black;
+}
+.cat-link.active {
+    color: black;
 }

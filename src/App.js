@@ -29,12 +29,13 @@ class App extends Component {
     }
 
     addToCart(item) {
-        let { itemsInCart, subTotal, total } = this.state;
+        let { itemsInCart, subTotal } = this.state;
         if (!this.hasElement(this.state.cartItems, item)) {
             itemsInCart++;
             this.state.cartItems.push(item);
             subTotal = this.calculateSubTotal(this.state.cartItems);
-            this.setState({ ...this.state, cartItems: [...this.state.cartItems], itemsInCart, subTotal });
+            let total = this.getTotal();
+            this.setState({ ...this.state, cartItems: [...this.state.cartItems], itemsInCart, subTotal, total });
         } else {
             this.increaseItemQuantity(item);
         }
@@ -48,6 +49,13 @@ class App extends Component {
         return total
     }
 
+    getTotal() {
+        let sum = 0;
+        this.state.cartItems.map((foodItem) => sum += (foodItem.quantity * foodItem.price));
+        this.setState({ ...this.state, total: sum })
+        return sum;
+    }
+
     increaseItemQuantity(item) {
         let { itemsInCart } = this.state;
         let newCartItems = this.state.cartItems.map((el, i) => {
@@ -58,7 +66,8 @@ class App extends Component {
             return el;
         });
         let subTotal = this.calculateSubTotal(newCartItems);
-        this.setState({ ...this.state, cartItems: newCartItems, itemsInCart, subTotal });
+        let total = this.getTotal();
+        this.setState({ ...this.state, cartItems: newCartItems, itemsInCart, subTotal, total });
     }
 
     decreaseItemQuantity(item) {
@@ -72,8 +81,9 @@ class App extends Component {
             }
             return el;
         });
+        let total = this.getTotal();
         let subTotal = this.calculateSubTotal(newCartItems);
-        this.setState({ ...this.state, cartItems: newCartItems, itemsInCart, subTotal });
+        this.setState({ ...this.state, cartItems: newCartItems, itemsInCart, subTotal, total });
     }
 
     removeItem(item) {
@@ -100,11 +110,15 @@ class App extends Component {
         }
     }
 
+    isCartEmpty() {
+        return this.state.itemsInCart === 0;
+    }
+
     render() {
         return (
             <Router>
                 <Switch>
-                    <Route exact path="/" render={(props) => <Home addToCart={this.addToCart.bind(this)} parent={this} />} />
+                    <Route exact path="/" render={(props) => <Home addToCart={this.addToCart.bind(this)} total={this.state.total} parent={this} />} />
                     <Route path="/about" component={About} />
                     <Route path="/cart" render={(props) => <Cart addToCart={this.addToCart.bind(this)} cartItems={this.state.cartItems} parent={this} />} />
                     <Route path="/details/:slug" validate={parms => console.log(parms)} render={(props) => <Details props={props} />} />

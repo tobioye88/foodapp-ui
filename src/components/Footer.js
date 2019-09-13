@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CONFIG } from './Config';
+import { CONFIG } from '../config/Config';
 
 class Footer extends Component {
     footerStyle = {
