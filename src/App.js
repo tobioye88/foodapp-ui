@@ -10,49 +10,39 @@ import Login from './pages/Login';
 import Dashboard from './pages/admin/Dashboard';
 
 class App extends Component {
-    //cartItems[item: object},]
     state = {
+        isNavBarOpen: false,
         itemsInCart: 0,
-        subTotal: 0,
         total: 0,
         cartItems: []
-    }
+    };
 
     hasElement(array, element) {
         if (array.length === 0) {
             return false;
         }
 
-        let newArr = array.filter((el, i) => el.id === element.id);
+        let newArr = array.filter((el) => el.id === element.id);
 
         return newArr.length >= 1;
     }
 
     addToCart(item) {
-        let { itemsInCart, subTotal } = this.state;
+        let { itemsInCart } = this.state;
         if (!this.hasElement(this.state.cartItems, item)) {
             itemsInCart++;
-            this.state.cartItems.push(item);
-            subTotal = this.calculateSubTotal(this.state.cartItems);
+            this.state.cartItems.unshift({ ...item, quantity: 1 });
             let total = this.getTotal();
-            this.setState({ ...this.state, cartItems: [...this.state.cartItems], itemsInCart, subTotal, total });
+            this.setState({ ...this.state, cartItems: [...this.state.cartItems], itemsInCart, total });
         } else {
             this.increaseItemQuantity(item);
         }
     }
 
-    calculateSubTotal(arr) {
-        let total = 0;
-        arr.forEach((el, i) => {
-            total += el.price * el.quantity;
-        });
-        return total
-    }
-
     getTotal() {
         let sum = 0;
         this.state.cartItems.map((foodItem) => sum += (foodItem.quantity * foodItem.price));
-        this.setState({ ...this.state, total: sum })
+        this.setState({ ...this.state, total: sum });
         return sum;
     }
 
@@ -65,9 +55,8 @@ class App extends Component {
             }
             return el;
         });
-        let subTotal = this.calculateSubTotal(newCartItems);
         let total = this.getTotal();
-        this.setState({ ...this.state, cartItems: newCartItems, itemsInCart, subTotal, total });
+        this.setState({ ...this.state, cartItems: newCartItems, itemsInCart, total });
     }
 
     decreaseItemQuantity(item) {
@@ -82,36 +71,34 @@ class App extends Component {
             return el;
         });
         let total = this.getTotal();
-        let subTotal = this.calculateSubTotal(newCartItems);
-        this.setState({ ...this.state, cartItems: newCartItems, itemsInCart, subTotal, total });
+        this.setState({ ...this.state, cartItems: newCartItems, itemsInCart, total });
     }
 
     removeItem(item) {
-        console.log("Removing Item: ");
         let { itemsInCart } = this.state;
 
         let itemPosition = -1;
         this.state.cartItems.filter((el, i) => {
             if (el.id === item.id) {
-                console.log("position", i);
-
                 itemPosition = i;
                 itemsInCart -= el.quantity;
                 return true;
             }
             return false;
         });
-        if (itemPosition > -1) {
-            console.log("splicing...");
 
+        if (itemPosition > -1) {
             this.state.cartItems.splice(itemPosition, 1);
-            var subTotal = this.calculateSubTotal(this.state.cartItems);
-            this.setState({ ...this.state, itemsInCart, subTotal });
+            this.setState({ ...this.state, itemsInCart, total: this.getTotal() });
         }
     }
 
     isCartEmpty() {
         return this.state.itemsInCart === 0;
+    }
+
+    emptyCart() {
+        this.setState({ ...this.state, itemsInCart: 0, cartItems: [], total: 0 });
     }
 
     render() {

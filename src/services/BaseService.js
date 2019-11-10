@@ -125,7 +125,17 @@ class BaseService {
             .catch(error => reject(error));
     }
 
-    search(keyword, resolve = () => { }, reject = () => { }) { }
+    search(keyword, resolve = () => { }, reject = () => { }, page=1) {
+        fetch(`${CONFIG.baseRoute}/v1/${this.path}/search?keyword=${keyword}&page=${page}`)
+            .then(response => {
+                if (response.status >= 300 || response.status < 200) {
+                    throw new Error("Error occurred");
+                }
+                return response.json();
+            })
+            .then(data => resolve(data))
+            .catch(error => reject(error));
+    }
 }
 
 export default BaseService;

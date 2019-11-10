@@ -1,4 +1,5 @@
 export const CONFIG = {
+    appName: "FoodStack",
     // baseRoute: 'http://localhost:8888',
     // baseRoute: 'https://d84d152d-a246-48af-8d75-31c8f0801813.mock.pstmn.io',
     baseRoute: 'http://localhost:3000',

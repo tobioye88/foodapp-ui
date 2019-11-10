@@ -11,14 +11,26 @@ export function Button(props) {
     const { className = 'btn btn-primary', style = {} } = props;
     return (
         <button className={className} style={style}>{props.children}</button>
-    )
+    );
+}
+
+export function LeftButton(props) {
+    const { defaultClassName ='btn btn-left-rounded ', className = '', style = {}} = props;
+    return <Button className={defaultClassName + className} style={style} >{props.children}</Button>;
+
+}
+
+export function RightButton(props) {
+    const { defaultClassName ='btn btn-right-rounded ', className = '', style = {}} = props;
+    return <Button className={defaultClassName + className} style={style} >{props.children}</Button>;
+
 }
 
 export function Input(props) {
     const { inputClassName = '', inputStyle = {}, placeholder = '' } = props;
     return (
         <input className={inputClassName} style={inputStyle} placeholder={placeholder} />
-    )
+    );
 }
 
 export function FormInput(props) {
@@ -28,13 +40,13 @@ export function FormInput(props) {
             <label className={labelClassName} style={labelStyle}>{labelText}</label>
             <Input props={props} />
         </div>
-    )
+    );
 }
 
 export function Icon(props) {
-    const { componentStyle = '', className } = props;
+    const { componentStyle = {}, className } = props;
 
-    return (<i className={className} style={componentStyle}></i>)
+    return (<i className={className} style={componentStyle}/>);
 }
 
 export function DetailCard(props) {
@@ -49,10 +61,10 @@ export function DetailCard(props) {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default function Loading(props) {
+export function Loading(props) {
     const { className } = props;
     return (
         <div className="test-center">
@@ -62,7 +74,12 @@ export default function Loading(props) {
                 </div>
             </div>
         </div>
-    )
+    );
+}
+
+export default function IconButton(props) {
+    const { handleClick, defaultButtonClass = "btn border-0 p-0 ", buttonClass = "", defaultIconClass = "icn d-block ", iconClass = "" } = props;
+    return (<button onClick={handleClick} className={defaultButtonClass + buttonClass}><i className={defaultIconClass + iconClass}/></button>);
 }
 
 
@@ -78,17 +95,18 @@ export class Modal extends Component {
         const { title, buttons = [], toggleEditModal, dismissable = true, showCloseButton = true } = this.props
         return (
             <>
-                <div className="modal-backdrop fade show"></div>
+                <div className="modal-backdrop fade show"/>
                 <div className="modal fade show" style={{ display: 'block' }} id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content border-0" style={{ borderRadius: 30 }}>
                             <div className="modal-header border-0 p-4">
                                 <h5 className="modal-title" id="exampleModalLabel">{title}</h5>
-                                {(dismissable) ? (
-                                    <button type="button" className="close" onClick={toggleEditModal.bind(this)} aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                ) : ''
+                                {
+                                    (dismissable) && (
+                                        <button type="button" className="close" onClick={toggleEditModal.bind(this)} aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    )
                                 }
 
                             </div>

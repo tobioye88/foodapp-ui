@@ -6,7 +6,7 @@ class FoodService extends BaseService {
 
     static add(data, resolve = () => { }, reject = () => { }) {
         fetch(`${CONFIG.baseRoute}/v1/menu/add`, {
-            method: 'post',
+            method: 'POST',
             body: data
         })
             .then(response => {
@@ -19,9 +19,18 @@ class FoodService extends BaseService {
             .catch(error => reject(error));
     }
 
-    getbyCategory(category, resolve = () => { }, reject = () => { }) { }
+    getbyCategory(category, resolve = () => { }, reject = () => { }, page=1) {
+        fetch(`${CONFIG.baseRoute}/v1/menu/byCategory?category=${category}&page=${page}`)
+            .then(response => {
+                if (response.status >= 300 || response.status < 200) {
+                    throw new Error("Error occurred");
+                }
+                return response.json();
+            })
+            .then(data => resolve(data))
+            .catch(error => reject(error));
+    }
 
-    search(keyword, resolve = () => { }, reject = () => { }) { }
 }
 
 export default FoodService;

@@ -15,10 +15,10 @@ body {
     border-bottom-right-radius: 30px;
 }
 .nav-round-right:hover {
-    background-color: rgb(242, 242, 242);
+    background-color: #f2f2f2;
 }
 .nav-round-right.active{
-    background-color: rgb(255, 55, 55);
+    background-color: #ff3737;
     color: #ffffff;
 }
 
@@ -35,7 +35,7 @@ body {
 }
 
 .bg-grey {
-    background-color: #f3f3f3;
+    background-color: #FAFAFA;
 }
 
 .br-30 {
@@ -61,11 +61,9 @@ body {
 .cart-counter {
     width: 50px;
     height: 50px;
-    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 15px;
 }
 
 .box-shadow {
@@ -82,4 +80,88 @@ body {
 }
 .cat-link.active {
     color: black;
+}
+
+.c-bg-secondary {
+    background-color: #FBF3D5;
+}
+
+.sidebar-button {
+    border: none;
+    background-color: transparent;
+    margin: 0 15px;
+}
+.sidebar-button div {
+    width: 20px;
+    height: 2px;
+    background-color: #ff3737;
+    margin: 2px 0;
+}
+
+i.icn {
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+}
+i.user {
+    background-image: url(/imgs/social.svg);
+    background-position: -384px -48px;
+}
+i.user-bold {
+    background-image: url(/imgs/social.svg);
+    background-position: -288px -48px;
+}
+i.search {
+    background-image: url(/imgs/action.svg);
+    background-position: -336px -768px;
+}
+i.plus {
+    background-image: url(/imgs/content.svg);
+    background-position: 0px 0px;
+}
+i.plus-white {
+    background-image: url(/imgs/content-white.svg);
+    background-position: 0px 0px;
+}
+i.down {
+    background-image: url(/imgs/navigation.svg);
+    background-position: -192px 0px;
+}
+i.up{
+    background-image: url(/imgs/navigation.svg);
+    background-position: -288px 0px;
+}
+i.close{
+    background-image: url(/imgs/navigation.svg);
+    background-position: -288px -48px;
+}
+
+button i.icn {
+    opacity: 0.5;
+    transition: .3s;
+}
+button i.icn:hover {
+    opacity: 1;
+}
+
+.btn-primary {
+    background-color: #ff3737;
+    border-color: #ff3737;
+}
+
+.btn-primary:hover {
+    background-color: #c22a2a;
+    border-color: #c22a2a;
+}
+.btn-primary i.icn {
+    opacity: 1;
+}
+
+.btn-left-rounded, .btn-right-rounded {
+    border-radius: 15px 0 0 15px;
+    padding: 12px 20px;
+}
+
+.btn-right-rounded {
+    border-radius: 0 15px 15px 0;
 }

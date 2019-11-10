@@ -5,7 +5,6 @@ export const FoodList = [
         price: 1200.00,
         description: "Delicious",
         imagePath: "foodimage.jpg",
-        quantity: 1,
     },
     {
         id: 2,
@@ -13,7 +12,6 @@ export const FoodList = [
         price: 1000.00,
         description: "Delicious",
         imagePath: "foodimage.jpg",
-        quantity: 1,
     },
     {
         id: 3,
@@ -21,7 +19,6 @@ export const FoodList = [
         price: 900.00,
         description: "Delicious",
         imagePath: "foodimage.jpg",
-        quantity: 1,
     },
     {
         id: 4,
@@ -29,15 +26,13 @@ export const FoodList = [
         price: 1500.00,
         description: "Delicious",
         imagePath: "foodimage.jpg",
-        quantity: 1,
     },
     {
         id: 5,
-        name: "Perfait",
-        price: 500.00,
+        name: "Beans and Vegies",
+        price: 800.00,
         description: "Spetacular",
         imagePath: "foodimage.jpg",
-        quantity: 1,
     },
     {
         id: 6,
@@ -45,23 +40,48 @@ export const FoodList = [
         price: 500.00,
         description: "Spetacular",
         imagePath: "foodimage.jpg",
-        quantity: 1,
     },
     {
         id: 7,
-        name: "Perfait",
-        price: 500.00,
+        name: "Citrus blast Smoothie",
+        price: 700.00,
         description: "Spetacular",
         imagePath: "foodimage.jpg",
-        quantity: 1,
     },
     {
         id: 8,
-        name: "Perfait",
-        price: 500.00,
+        name: "8th Wonder Smothie",
+        price: 700.00,
         description: "Spetacular",
         imagePath: "foodimage.jpg",
-        quantity: 1,
+    },
+    {
+        id: 9,
+        name: "Coleslaw",
+        price: 700.00,
+        description: "Spetacular",
+        imagePath: "foodimage.jpg",
+    },
+    {
+        id: 10,
+        name: "Oats and akara",
+        price: 700.00,
+        description: "Spetacular",
+        imagePath: "foodimage.jpg",
+    },
+    {
+        id: 11,
+        name: "Waffles and scrambled eggs",
+        price: 700.00,
+        description: "Spetacular",
+        imagePath: "foodimage.jpg",
+    },
+    {
+        id: 12,
+        name: "Sandwiches",
+        price: 250.00,
+        description: "Spetacular",
+        imagePath: "foodimage.jpg",
     }
 ];
 
