@@ -33,7 +33,7 @@ class FoodItem extends Component {
 
     getFoodFooter() {
         return (
-            <div className="card-footer text-right border-0 bg-transparent px-4 pb-4 pt-0">
+            <div className="card-footer text-right border-0 bg-transparent px-3 pb-3 pt-0">
                 <button className="btn btn-primary btn-sm btn-rounded" onClick={this.props.addToCart.bind(this, this.props.foodItem)}>+ Add To Cart</button>
             </div>);
     }
